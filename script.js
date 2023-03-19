@@ -1,76 +1,51 @@
-const stopMotion = {
-  stopMotion: [
-    {
-      title: 'MITOSIS',
-      videoIds: ["https://www.youtube.com/embed/araFF9plBHQ"]
-    },
-    {
-      title: 'FOIL',
-      videoIds: ["https://www.youtube.com/embed/tUPOCu6pj8M"]
-    },
-    {
-      title: 'HIDARI',
-      videoIds: ["https://www.youtube.com/embed/DpefYPLH67A"]
-    }
+const channels = {
+  stopMotion: {
+    title: 'Channel 1',
+    videoIds: ['araFF9plBHQ', 'tUPOCu6pj8M', 'DpefYPLH67A']
+  },
+  turntable: {
+    title: 'Channel 2',
+    videoIds: ['FTJd_WbEhEs', 'zGM5OG-_cvs', 'H9YhOHoJ9-Q']
+  },
+  wave: {
+    title: 'Channel 3',
+    videoIds: ['3EOY3RL_lZg', 'CLk7A7HXhYQ', 'THfL_OI1qt4']
+  }
+};
 
-  ]
-}
+const stopMotionButton = document.getElementById("stop-motion");
+const turntableButton = document.getElementById("turntable");
+const waveButton = document.getElementById("wave");
+const tvElement = document.getElementById("tv");
 
-function showStopMotion() {
-  const showStopMotion = [stopMotion];
-  showStopMotion.forEach(function (showStopMotion) {
-    console.log(showStopMotion);
-  })
+stopMotionButton.addEventListener("click", function() {
+  const randomIndex = Math.floor(Math.random() * channels.stopMotion.videoIds.length);
+  const randomVideoId = channels.stopMotion.videoIds[randomIndex];
+  const iframe = createIframe(randomVideoId);
+  tvElement.innerHTML = "";
+  tvElement.appendChild(iframe);
+});
 
-}
-function addElement() {
-  // create a new div element
-  const newButton = document.createElement("button");
+turntableButton.addEventListener("click", function() {
+  const randomIndex = Math.floor(Math.random() * channels.turntable.videoIds.length);
+  const randomVideoId = channels.turntable.videoIds[randomIndex];
+  const iframe = createIframe(randomVideoId);
+  tvElement.innerHTML = "";
+  tvElement.appendChild(iframe);
+});
 
-  // and give it some content
-  const newContent = document.createTextNode("This is a new Button");
+waveButton.addEventListener("click", function() {
+  const randomIndex = Math.floor(Math.random() * channels.wave.videoIds.length);
+  const randomVideoId = channels.wave.videoIds[randomIndex];
+  const iframe = createIframe(randomVideoId);
+  tvElement.innerHTML = "";
+  tvElement.appendChild(iframe);
+});
 
-  // add the text node to the newly created div
-  newDiv.appendChild(newContent);
-
-  // add the newly created element and its content into the DOM
-  const currentDiv = document.getElementById("stop-motion");
-  document.body.insertBefore(newButton, currentDiv);
-}
-
-const turntable = {
-  turntable: [
-    {
-      title: 'BELT',
-      videoIds: ["https://www.youtube.com/embed/FTJd_WbEhEs"]
-    },
-    {
-      title: 'CALIBRATION',
-      videoIds: ["https://www.youtube.com/embed/zGM5OG-_cvs"]
-    },
-    {
-      title: 'AIWA-PX-E85',
-      videoIds: ["https://www.youtube.com/embed/H9YhOHoJ9-Q"]
-    }
-
-  ]
-}
-
-
-const wave = {
-  wave: [
-    {
-      title: '30SEC',
-      videoIds: ["https://www.youtube.com/embed/3EOY3RL_lZg"]
-    },
-    {
-      title: 'CINEMATIC',
-      videoIds: ["https://www.youtube.com/embed/CLk7A7HXhYQ"]
-    },
-    {
-      title: 'ATLANTIC',
-      videoIds: ["https://www.youtube.com/embed/THfL_OI1qt4"]
-    }
-
-  ]
+function createIframe(videoId) {
+  const iframe = document.createElement("iframe");
+  iframe.setAttribute("src", "https://www.youtube.com/embed/" + videoId);
+  iframe.setAttribute("allowfullscreen", "");
+  iframe.setAttribute("frameborder", "0");
+  return iframe;
 }
